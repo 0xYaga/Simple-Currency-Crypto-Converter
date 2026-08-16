@@ -8,9 +8,11 @@ Detailed technical documentation: [DOCUMENTATION.md](DOCUMENTATION.md).
 
 ## Screenshots
 
-![Screenshot 3](assets/screenshots/3.png)
-![Screenshot 2](assets/screenshots/2.png)
-![Screenshot 1](assets/screenshots/1.png)
+<p align="center">
+  <img src="assets/screenshots/1.png" alt="Screenshot 1" width="31%">
+  <img src="assets/screenshots/2.png" alt="Screenshot 2" width="31%">
+  <img src="assets/screenshots/3.png" alt="Screenshot 3" width="31%">
+</p>
 
 ## What is included in 1.0.0
 
