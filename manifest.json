@@ -1,0 +1,74 @@
+{
+  "manifest_version": 3,
+  "default_locale": "ru",
+  "name": "__MSG_extensionName__",
+  "version": "1.0.0",
+  "description": "__MSG_extensionDescription__",
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.min.json",
+    "https://latest.currency-api.pages.dev/v1/currencies/usd.min.json",
+    "https://api.coinbase.com/v2/exchange-rates",
+    "https://api.coingecko.com/api/v3/simple/price*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "__MSG_actionTitle__",
+    "default_icon": "icons/converter.svg"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "commands": {
+    "converter": {
+      "description": "__MSG_commandConverter__"
+    },
+    "calculator": {
+      "description": "__MSG_commandCalculator__"
+    },
+    "currencyPicker": {
+      "description": "__MSG_commandCurrencyPicker__"
+    },
+    "swap": {
+      "description": "__MSG_commandSwap__"
+    },
+    "search": {
+      "description": "__MSG_commandSearch__"
+    }
+  },
+  "icons": {
+    "16": "icons/converter.svg",
+    "32": "icons/converter.svg",
+    "48": "icons/converter.svg",
+    "96": "icons/converter.svg",
+    "128": "icons/converter.svg"
+  },
+  "sidebar_action": {
+    "default_title": "__MSG_sidebarTitle__",
+    "default_panel": "sidebar.html",
+    "default_icon": "icons/converter.svg",
+    "open_at_install": false
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mini-crypto-converter@local",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  }
+}

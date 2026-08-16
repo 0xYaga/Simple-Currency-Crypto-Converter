@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Mini Krypto- & Währungsrechner"
+  },
+  "extensionDescription": {
+    "message": "Leichter Währungs- und Kryptorechner mit Taschenrechner, Offline-Cache und lokalem Verlauf"
+  },
+  "actionTitle": {
+    "message": "Währungsrechner"
+  },
+  "sidebarTitle": {
+    "message": "Währungsrechner"
+  },
+  "commandConverter": {
+    "message": "Umrechner öffnen"
+  },
+  "commandCalculator": {
+    "message": "Rechner öffnen"
+  },
+  "commandCurrencyPicker": {
+    "message": "Schnelle Währungsauswahl"
+  },
+  "commandSwap": {
+    "message": "Währungen tauschen"
+  },
+  "commandSearch": {
+    "message": "Währungssuche öffnen"
+  }
+}

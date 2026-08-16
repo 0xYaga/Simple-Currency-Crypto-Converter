@@ -1,0 +1,16 @@
+{
+  "name": "mini-crypto-fiat-converter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check:syntax": "node scripts/check-syntax.mjs",
+    "build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-xpi.ps1",
+    "verify:xpi": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-xpi.ps1",
+    "verify": "npm run check:syntax && npm test && npm run build && npm run verify:xpi"
+  }
+}
