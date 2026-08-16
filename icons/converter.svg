@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- A tight viewBox keeps the exchange arrows legible at Firefox toolbar size. -->
+  <style>
+    .tile { fill: #0b1f3d; stroke: #3d6fb6; stroke-width: 2; }
+    .arrow { fill: #a9c9ff; }
+    @media (prefers-color-scheme: light) {
+      .tile { fill: #12325e; stroke: #2b62aa; }
+      .arrow { fill: #eaf3ff; }
+    }
+  </style>
+  <rect class="tile" x="2" y="2" width="60" height="60" rx="14"/>
+  <path class="arrow" d="M8 17h31V9l18 15-18 15v-8H8z"/>
+  <path class="arrow" d="M56 47H25v8L7 40l18-15v8h31z"/>
+</svg>

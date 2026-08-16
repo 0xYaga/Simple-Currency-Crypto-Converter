@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Mini Crypto & Fiat Converter"
+  },
+  "extensionDescription": {
+    "message": "Lightweight fiat and crypto converter with calculator, offline cache, and local history"
+  },
+  "actionTitle": {
+    "message": "Converter"
+  },
+  "sidebarTitle": {
+    "message": "Currency Converter"
+  },
+  "commandConverter": {
+    "message": "Open converter"
+  },
+  "commandCalculator": {
+    "message": "Open calculator"
+  },
+  "commandCurrencyPicker": {
+    "message": "Quick currency selection"
+  },
+  "commandSwap": {
+    "message": "Swap currencies"
+  },
+  "commandSearch": {
+    "message": "Open currency search"
+  }
+}

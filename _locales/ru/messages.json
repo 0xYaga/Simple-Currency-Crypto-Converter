@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Mini Crypto & Fiat Converter"
+  },
+  "extensionDescription": {
+    "message": "Лёгкий конвертер валют и криптовалют с калькулятором, офлайн-кэшем и локальной историей"
+  },
+  "actionTitle": {
+    "message": "Конвертер"
+  },
+  "sidebarTitle": {
+    "message": "Конвертер валют"
+  },
+  "commandConverter": {
+    "message": "Открыть конвертер"
+  },
+  "commandCalculator": {
+    "message": "Открыть калькулятор"
+  },
+  "commandCurrencyPicker": {
+    "message": "Быстрый выбор валюты"
+  },
+  "commandSwap": {
+    "message": "Поменять валюты местами"
+  },
+  "commandSearch": {
+    "message": "Открыть поиск валют"
+  }
+}

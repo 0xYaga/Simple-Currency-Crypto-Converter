@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "迷你加密货币与法币换算器"
+  },
+  "extensionDescription": {
+    "message": "轻量级法币和加密货币换算器，内置计算器、离线缓存和本地历史记录"
+  },
+  "actionTitle": {
+    "message": "货币换算器"
+  },
+  "sidebarTitle": {
+    "message": "货币换算器"
+  },
+  "commandConverter": {
+    "message": "打开货币换算器"
+  },
+  "commandCalculator": {
+    "message": "打开计算器"
+  },
+  "commandCurrencyPicker": {
+    "message": "快速选择货币"
+  },
+  "commandSwap": {
+    "message": "交换货币"
+  },
+  "commandSearch": {
+    "message": "打开货币搜索"
+  }
+}

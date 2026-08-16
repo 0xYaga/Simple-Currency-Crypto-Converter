@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru" class="popup-page">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конвертер валют</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="popup-mode">
+  <main class="app">
+    <nav class="tool-tabs" aria-label="Инструменты" data-i18n-aria-label="toolsAria">
+      <button id="tab-converter" class="tool-tab active" type="button" data-i18n="converterTab">Конвертер</button>
+      <button id="tab-calculator" class="tool-tab" type="button" data-i18n="calculatorTab">Калькулятор</button>
+    </nav>
+
+    <section id="view-converter" class="view active" aria-label="Конвертер валют" data-i18n-aria-label="converterAria">
+      <div class="header main-header">
+        <label class="sr-only" for="amount" data-i18n="amountLabel">Сумма</label>
+        <input id="amount" type="text" value="1" inputmode="decimal" placeholder="Сумма" data-i18n-placeholder="amountPlaceholder" autocomplete="off" spellcheck="false">
+
+        <button id="base" class="currency-code-btn" type="button" aria-label="Выбрать базовую валюту" data-i18n-aria-label="chooseBaseCurrency">BTC</button>
+
+        <button id="btn-swap" class="swap-btn" type="button" disabled>
+          <span class="swap-symbol" aria-hidden="true">⇄</span>
+        </button>
+
+        <button id="btn-history" class="icon-btn" type="button" title="История" aria-label="Открыть историю" data-i18n-title="history" data-i18n-aria-label="openHistory">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3a9 9 0 1 0 8.9 10.3h-2.1A7 7 0 1 1 18 7.7L15.7 10H22V3.7L19.4 6.3A9 9 0 0 0 13 3Zm-1 5v5.4l4.3 2.5 1-1.7-3.3-1.9V8h-2Z"/></svg>
+        </button>
+
+        <button id="btn-settings" class="icon-btn" type="button" title="Настройки" aria-label="Открыть настройки" data-i18n-title="settings" data-i18n-aria-label="openSettings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94a7.7 7.7 0 0 0 .05-.94 7.7 7.7 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.1 7.1 0 0 0-1.62-.94L14.39 2.8a.5.5 0 0 0-.49-.4h-3.8a.5.5 0 0 0-.49.4l-.36 2.52c-.58.24-1.12.55-1.62.94L5.24 5.3a.5.5 0 0 0-.61.22L2.71 8.84a.5.5 0 0 0 .12.64l2.03 1.58A7.7 7.7 0 0 0 4.81 12c0 .32.02.63.05.94l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .61.22l2.39-.96c.5.39 1.04.7 1.62.94l.36 2.52a.5.5 0 0 0 .49.4h3.8a.5.5 0 0 0 .49-.4l.36-2.52c.58-.24 1.12-.55 1.62-.94l2.39.96a.5.5 0 0 0 .61-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58ZM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5Z"/></svg>
+        </button>
+      </div>
+
+      <section id="primary-result" class="primary-result" aria-live="polite">
+        <div class="primary-result-header">
+          <span class="primary-result-label" data-i18n="result">Результат</span>
+          <button id="target" class="target-currency-btn" type="button" aria-label="Выбрать валюту результата" data-i18n-aria-label="chooseTargetCurrency">USD</button>
+        </div>
+        <output id="primary-result-value" class="primary-result-value">—</output>
+        <span id="primary-result-note" class="primary-result-note">BTC → USD</span>
+      </section>
+
+      <div class="favorite-pairs-bar">
+        <button id="btn-favorite-pair" class="pair-favorite-toggle" type="button" aria-label="Добавить текущую пару в избранное">☆</button>
+        <p id="favorite-pairs-empty" class="favorite-pairs-empty" data-i18n="favoritePairsHint">Закрепить текущую пару</p>
+        <div id="favorite-pairs-list" class="favorite-pairs-list" aria-label="Избранные пары" data-i18n-aria-label="favoritePairsAria"></div>
+      </div>
+
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19-5.2-5.2A7.5 7.5 0 1 0 14 15.8L19 21l2-2ZM4 9.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z"/></svg>
+        <label class="sr-only" for="currency-search" data-i18n="searchLabel">Поиск валюты</label>
+        <input id="currency-search" type="search" placeholder="Поиск: руб, ruble, RUB" data-i18n-placeholder="searchPlaceholderAliases" autocomplete="off" spellcheck="false">
+        <button id="btn-clear-search" class="clear-search" type="button" aria-label="Очистить поиск" data-i18n-aria-label="clearSearch" hidden>×</button>
+      </div>
+
+      <div id="list" class="list" aria-live="polite" aria-busy="true">
+        <div class="message loading" data-i18n="loading">Загрузка…</div>
+      </div>
+
+      <div class="status-bar">
+        <span id="status-text" class="status-text" role="status" aria-live="polite"></span>
+        <button id="btn-retry" class="text-btn" type="button" data-i18n="refresh" hidden>Обновить</button>
+      </div>
+    </section>
+
+    <section id="view-calculator" class="view calculator-view" aria-label="Калькулятор" data-i18n-aria-label="calculatorAria">
+      <div class="calculator-display" aria-live="polite">
+        <div id="calc-expression" class="calculator-expression">0</div>
+        <output id="calc-result" class="calculator-result">0</output>
+      </div>
+      <div id="calculator-grid" class="calculator-grid">
+        <button class="calc-btn utility" type="button" data-action="left-paren">(</button>
+        <button class="calc-btn utility" type="button" data-action="right-paren">)</button>
+        <button class="calc-btn utility" type="button" data-action="sqrt" aria-label="Квадратный корень" data-i18n-aria-label="squareRoot">√</button>
+        <button class="calc-btn utility" type="button" data-action="square" aria-label="Квадрат" data-i18n-aria-label="square">x²</button>
+
+        <button class="calc-btn utility" type="button" data-action="clear">AC</button>
+        <button class="calc-btn utility" type="button" data-action="backspace" aria-label="Удалить символ" data-i18n-aria-label="backspace">⌫</button>
+        <button class="calc-btn utility" type="button" data-action="percent">%</button>
+        <button class="calc-btn operator" type="button" data-token="/">÷</button>
+
+        <button class="calc-btn" type="button" data-token="7">7</button>
+        <button class="calc-btn" type="button" data-token="8">8</button>
+        <button class="calc-btn" type="button" data-token="9">9</button>
+        <button class="calc-btn operator" type="button" data-token="*">×</button>
+
+        <button class="calc-btn" type="button" data-token="4">4</button>
+        <button class="calc-btn" type="button" data-token="5">5</button>
+        <button class="calc-btn" type="button" data-token="6">6</button>
+        <button class="calc-btn operator" type="button" data-token="-">−</button>
+
+        <button class="calc-btn" type="button" data-token="1">1</button>
+        <button class="calc-btn" type="button" data-token="2">2</button>
+        <button class="calc-btn" type="button" data-token="3">3</button>
+        <button class="calc-btn operator" type="button" data-token="+">+</button>
+
+        <button class="calc-btn utility" type="button" data-action="sign">±</button>
+        <button class="calc-btn" type="button" data-token="0">0</button>
+        <button class="calc-btn" type="button" data-token=".">.</button>
+        <button class="calc-btn equals" type="button" data-action="equals">=</button>
+      </div>
+      <p id="calculator-hint" class="calculator-hint" data-i18n="calculatorHint">Клавиатура поддерживается · Enter = результат</p>
+    </section>
+
+    <section id="view-history" class="view" aria-label="История" data-i18n-aria-label="history">
+      <div class="header settings-header">
+        <button id="btn-history-back" class="icon-btn" type="button" title="Назад" aria-label="Вернуться к конвертеру" data-i18n-title="backToConverter" data-i18n-aria-label="backToConverter">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.7 6.3-1.4-1.4L6.2 12l7.1 7.1 1.4-1.4L9 12l5.7-5.7Z"/></svg>
+        </button>
+        <h1 class="settings-title" data-i18n="history">История</h1>
+        <button id="btn-clear-history" class="history-clear-btn" type="button" data-i18n="clearHistory">Очистить</button>
+      </div>
+      <p class="history-note" data-i18n="historyLocalOnly">История хранится только на этом устройстве.</p>
+      <div id="history-list" class="history-list" aria-live="polite"></div>
+    </section>
+
+    <section id="view-settings" class="view" aria-label="Настройки" data-i18n-aria-label="settings">
+      <div class="header settings-header">
+        <button id="btn-back" class="icon-btn" type="button" title="Назад" aria-label="Вернуться к конвертеру" data-i18n-title="backToConverter" data-i18n-aria-label="backToConverter">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.7 6.3-1.4-1.4L6.2 12l7.1 7.1 1.4-1.4L9 12l5.7-5.7Z"/></svg>
+        </button>
+        <h1 class="settings-title" data-i18n="settings">Настройки</h1>
+      </div>
+
+      <div class="settings-controls">
+        <label class="toggle-label">
+          <input type="checkbox" id="show-icons">
+          <span data-i18n="showIcons">Флаги и значки</span>
+        </label>
+        <label class="select-setting" for="language-select">
+          <span data-i18n="language">Язык интерфейса</span>
+          <select id="language-select">
+            <option value="auto" data-i18n="languageAuto">Автоматически</option>
+            <option value="ru">Русский</option>
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+            <option value="zh-CN">简体中文</option>
+          </select>
+        </label>
+        <label class="select-setting" for="launch-mode-select">
+          <span data-i18n="launchMode">Открывать расширение</span>
+          <select id="launch-mode-select">
+            <option value="popup" data-i18n="launchModePopup">Во всплывающем окне</option>
+            <option value="sidebar" data-i18n="launchModeSidebar">В боковой панели</option>
+          </select>
+        </label>
+        <section class="shortcut-settings" aria-labelledby="shortcut-settings-title">
+          <div class="shortcut-settings-heading">
+            <h2 id="shortcut-settings-title" data-i18n="hotkeys">Горячие клавиши</h2>
+            <button id="btn-clear-shortcuts" class="text-btn" type="button" data-i18n="clearAllShortcuts">Очистить все</button>
+          </div>
+          <p id="shortcut-settings-hint" class="shortcut-settings-hint" data-i18n="shortcutHint">По умолчанию выключены. Нажмите поле и используйте Ctrl/Cmd + клавишу.</p>
+          <div id="shortcut-settings-list" class="shortcut-settings-list"></div>
+        </section>
+        <p id="settings-notice" class="settings-notice" role="status"></p>
+      </div>
+
+      <div id="settings-list" class="settings-list"></div>
+    </section>
+
+    <div id="currency-picker" class="currency-picker" hidden>
+      <div class="currency-picker-panel" role="dialog" aria-modal="true" aria-labelledby="currency-picker-title">
+        <div class="currency-picker-header">
+          <h2 id="currency-picker-title" data-i18n="quickCurrencySelect">Быстрый выбор валюты</h2>
+          <button id="currency-picker-close" class="picker-close" type="button" aria-label="Закрыть" data-i18n-aria-label="close">×</button>
+        </div>
+        <label class="sr-only" for="currency-picker-search" data-i18n="searchLabel">Поиск валюты</label>
+        <input id="currency-picker-search" class="picker-search" type="search" placeholder="руб, ruble, RUB, юань, bitcoin…" data-i18n-placeholder="quickSearchPlaceholder" autocomplete="off" spellcheck="false">
+        <div id="currency-picker-list" class="currency-picker-list" role="listbox"></div>
+        <p class="picker-hint" data-i18n="pickerHint">↑ ↓ — выбор · Enter — подтвердить · Esc — закрыть</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
