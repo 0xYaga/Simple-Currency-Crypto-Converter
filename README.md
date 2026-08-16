@@ -1,4 +1,4 @@
-# Mini Crypto & Fiat Converter 1.0.0
+# Simple Currency & Crypto Converter
 
 [Русская версия](README.ru.md)
 
