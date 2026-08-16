@@ -1,102 +1,104 @@
 # Mini Crypto & Fiat Converter 1.0.0
 
-Минималистичный конвертер валют, криптовалют и обычный калькулятор для Firefox и совместимых браузеров.
+[Русская версия](README.ru.md)
 
-Подробная техническая документация на английском: [DOCUMENTATION.md](DOCUMENTATION.md).
+A minimalist currency and cryptocurrency converter with a standard calculator for Firefox and compatible browsers.
 
-## Что входит в 1.0.0
+Detailed technical documentation: [DOCUMENTATION.md](DOCUMENTATION.md).
 
-- Появился отдельный главный результат: текущая пара и итоговая сумма видны до списка курсов. Нажатие на код результата открывает выбор целевой валюты.
-- Нажатие на строку в списке теперь только выбирает целевую валюту и не меняет введённую сумму, базовую валюту или историю. Настоящий обмен по-прежнему выполняется только кнопкой со стрелками и сохраняет эквивалентную сумму.
-- Выбранная целевая валюта выделена в списке, а пустое избранное пар объясняет, как закрепить текущую пару.
-- Улучшены размеры интерактивных кнопок, контраст вторичного текста и читаемость статусов, истории, поиска и настроек. В узком popup параметры горячих клавиш больше не обрезают названия действий.
-- Локализованы подписи областей «История» и «Избранные пары» для скринридеров; подробности о расхождениях источников доступны им через статус курсов.
+## What is included in 1.0.0
 
-## Настраиваемые горячие клавиши
+- The current pair and converted total have a dedicated result area above the rate list. Click the result code to choose the target currency.
+- Clicking a row in the list only selects the target currency; it does not change the entered amount, base currency, or history. The swap button remains the only action that exchanges the currencies while preserving the equivalent value.
+- The selected target currency is highlighted, and an empty favorite-pairs area explains how to pin the current pair.
+- Interactive controls have larger targets, secondary text has better contrast, and status, history, search, and settings views are easier to read. Shortcut settings no longer truncate action names in a narrow popup.
+- The History and Favorite pairs landmarks are localized for screen readers; rate-source discrepancies are available to them through the rate-status message.
 
-- Горячие клавиши полностью настраиваются в Settings и по умолчанию отключены. Для каждого действия нажмите поле и задайте `Ctrl/Cmd` + поддерживаемую клавишу; `Esc`, `Backspace` или `Delete` очищают отдельное сочетание, а «Очистить все» сбрасывает все пять действий. Одно сочетание не может быть назначено двум действиям одновременно.
-- Старые фиксированные `Ctrl/Cmd + 1`, `Ctrl/Cmd + 2`, `Ctrl/Cmd + K`, `Ctrl/Cmd + Shift + X` и `/` удалены, поэтому они не вмешиваются в обычную работу, пока пользователь сам ничего не включил.
-- Значок кнопки расширения заменён на чёткий масштабируемый SVG с более крупными стрелками обмена. Firefox масштабирует его для панели, меню и экранов с высокой плотностью пикселей.
-- Настройки мигрируют до схемы v10. Старые настройки сохраняются, но горячие клавиши у существующих установок также начинаются выключенными.
+## Customizable keyboard shortcuts
 
-## Совместимость Firefox
+- Shortcuts are fully configurable in Settings and are disabled by default. For each action, click the field and press `Ctrl/Cmd` plus a supported key. `Esc`, `Backspace`, or `Delete` clear an individual shortcut; **Clear all** resets all five. A shortcut cannot be assigned to more than one action.
+- The former fixed `Ctrl/Cmd + 1`, `Ctrl/Cmd + 2`, `Ctrl/Cmd + K`, `Ctrl/Cmd + Shift + X`, and `/` shortcuts were removed, so they do not interfere with normal use unless the user enables a shortcut.
+- The extension-button icon is a crisp, scalable SVG with larger exchange arrows. Firefox scales it for the toolbar, menus, and high-density screens.
+- Settings migrate to schema v10. Existing settings are retained, while shortcuts start disabled for existing installations as well.
 
-- Исправлена загрузка временного дополнения в Firefox Developer Edition: фон переведён с неподдерживаемого `background.service_worker` на Firefox MV3 `background.scripts`.
+## Firefox compatibility
 
-## Режим запуска
+- Temporary loading in Firefox Developer Edition is supported: the background process uses Firefox MV3 `background.scripts` rather than unsupported `background.service_worker`.
 
-- В настройках появился сохраняемый выбор места запуска: всплывающее окно или боковая панель Firefox. Нажатие на иконку расширения всегда открывает выбранный вариант, включая после перезапуска браузера.
-- Добавлен фоновый обработчик, который меняет режим кнопки Firefox без дополнительного разрешения и открывает боковую панель непосредственно по нажатию пользователя.
-- Настройки мигрируют до схемы v9; сохранённые пары, язык, видимость значков и прочие параметры сохраняются.
+## Launch mode
 
-## Сверка криптовалют и избранные пары
+- Settings include a persistent choice of launch surface: a popup or the Firefox sidebar. Clicking the extension icon always opens the selected mode, including after a browser restart.
+- A background handler changes the Firefox action mode without an extra permission and opens the sidebar directly from the user click.
+- Settings migrate to schema v9; saved pairs, language, icon visibility, and other options are preserved.
 
-- Исправлено предупреждение Firefox Developer Edition: `sidebarAction` больше не запрашивается как несуществующее разрешение. Боковая панель по-прежнему объявлена через `sidebar_action` и работает без лишнего разрешения.
-- Добавлен CoinGecko как независимый проверяющий источник криптовалют. Если доступны все три источника и Coinbase выбивается, используется совпадающая пара проверяющих источников; если ни одна пара не совпала в допустимом диапазоне, конвертация этой криптовалюты блокируется.
-- Добавлено избранное для направленных пар. Нажмите звезду под строкой суммы, чтобы закрепить текущую пару, например `RUB → USDT`; нажатие на сохранённую пару сразу выбирает её без конвертации суммы.
-- Криптовалютные значки включены по умолчанию, имеют различимые локальные цветные бейджи и не требуют загрузки внешних изображений. В настройках их всё ещё можно отключить.
-- Настройки мигрируют до схемы v8, кэш — до v7. Старый кэш показывается сразу, но принудительно пересверяется по новой политике в фоне.
+## Crypto validation and favorite pairs
 
-## Проверка источников курсов и доступность
+- Firefox Developer Edition no longer receives a warning for requesting the nonexistent `sidebarAction` permission. The sidebar is still declared through `sidebar_action` and works without an unnecessary permission.
+- CoinGecko is used as an independent crypto validation source. When all three sources are available and Coinbase is an outlier, the matching validation pair is used. If no pair matches within the allowed range, conversion of that cryptocurrency is blocked.
+- Favorite directed pairs are supported. Click the star under the amount to pin the current pair, for example `RUB → USDT`; clicking a saved pair selects it without converting the amount.
+- Cryptocurrency icons are enabled by default. They use distinctive local color SVG badges and never load external images. They can still be disabled in Settings.
+- Settings migrate to schema v8 and the cache to v7. The previous cache is displayed immediately, then revalidated in the background under the new policy.
 
-- Сверка курсов между двумя независимыми таблицами: Coinbase используется как основной актуальный источник, Fawaz Exchange API — для проверки и заполнения отсутствующих валют.
-- Если источники расходятся сильнее допустимого порога, расширение блокирует конвертацию затронутых валют до следующей успешной сверки, показывает предупреждение и список проблемных кодов во всплывающей подсказке.
-- Пороги сверки: 1,5% для фиатных валют, 1% для стейблкоинов и 10% для остальных криптовалют.
-- При работе только с Coinbase расширение явно показывает время получения ответа, а не выдумывает дату публикации курса; при сверке используется подтверждённая дата Fawaz.
-- Добавлены автономные проверки политики курсов, миграций, калькулятора и сборки XPI без внешних зависимостей.
-- Строки валюты теперь состоят из отдельных нативных кнопок выбора, избранного и копирования без вложенных интерактивных элементов; это корректно для скринридеров и клавиатуры.
-- При недоступности одного источника расширение продолжает работать со вторым и явно сообщает об этом.
-- Быстрый выбор базовой валюты по нажатию на её код.
-- Поиск понимает код, локализованное название и альтернативные запросы: `руб`, `ruble`, `RUB`, `юань`, `lira`, `биткоин`, `эфир`, `тон` и другие.
-- TON доступен в быстром выборе автоматически, когда хотя бы один источник возвращает корректный курс.
-- Добавлены горячие клавиши для вкладок, быстрого выбора валюты, обмена и поиска.
-- Добавлена отдельная вкладка обычного калькулятора с клавиатурным вводом, скобками, процентами, квадратным корнем, квадратом числа, сменой знака и безопасным разбором выражений без `eval`.
-- Настройки обновлены до схемы v7, кэш — до схемы v6; старые данные мигрируют автоматически без ложной даты Coinbase.
+## Rate-source validation and accessibility
 
-## Горячие клавиши
+- Rates are compared between two independent tables: Coinbase is the main live source, while Fawaz Exchange API validates rates and fills gaps for missing currencies.
+- If sources differ beyond the allowed threshold, the extension blocks conversion of affected currencies until the next successful validation, displays a warning, and lists affected codes in a tooltip.
+- Validation thresholds are 1.5% for fiat currencies, 1% for stablecoins, and 10% for other cryptocurrencies.
+- With Coinbase alone, the extension displays the response time instead of inventing a rate publication date; when validated, it uses the confirmed Fawaz date.
+- Independent checks cover the rate policy, migrations, calculator, and XPI build without external dependencies.
+- Currency rows use separate native controls for selecting, favoriting, and copying. There are no nested interactive elements, so screen readers and keyboards work correctly.
+- If one source is unavailable, the extension continues using the other and clearly reports that condition.
+- Quickly choose the base currency by clicking its code.
+- Search recognizes codes, localized names, and alternative queries such as `ruble`, `RUB`, `yuan`, `lira`, `bitcoin`, `ether`, and `ton`.
+- TON appears in quick selection automatically when at least one source returns a valid rate.
+- Shortcuts are available for tabs, quick currency selection, currency swapping, and search.
+- A dedicated standard-calculator tab supports keyboard input, parentheses, percentages, square roots, squaring, sign changes, and safe expression parsing without `eval`.
+- Settings migrate to schema v7 and the cache to v6; old data migrates automatically without a false Coinbase timestamp.
 
-- По умолчанию все пять сочетаний выключены. Их можно назначить в настройках для конвертера, калькулятора, быстрого выбора валюты, обмена валют и поиска.
-- Нажмите поле сочетания и удерживайте `Ctrl` (Windows/Linux) либо `Cmd` (macOS) вместе с нужной клавишей. Это исключает перехват обычного текста, чисел и управления калькулятором.
-- После назначения сочетания работают во всём Firefox: расширение открывает выбранный режим (всплывающее окно или боковую панель) и выполняет действие. Firefox не позволит назначить сочетание, уже занятое браузером или другим дополнением.
-- В калькуляторе работают цифры, `+`, `-`, `*`, `/`, скобки, `%`, `Enter`, `Backspace`, `Delete` и `Esc`.
+## Keyboard shortcuts
 
-## Основные возможности
+- All five shortcuts are disabled by default. They can be assigned to the converter, calculator, quick currency selection, currency swap, and search.
+- Click a shortcut field and hold `Ctrl` (Windows/Linux) or `Cmd` (macOS) with the desired key. This avoids intercepting normal text, numbers, and calculator input.
+- Once assigned, shortcuts work throughout Firefox: the extension opens the chosen launch mode and performs the action. Firefox will not let you assign a combination already used by the browser or another add-on.
+- The calculator supports digits, `+`, `-`, `*`, `/`, parentheses, `%`, `Enter`, `Backspace`, `Delete`, and `Esc`.
 
-- Более 100 фиатных валют, криптовалют и токенов.
-- Одна таблица курсов относительно USD: смена базовой валюты и ввод суммы не создают новые сетевые запросы.
-- Stale-while-revalidate: сохранённые курсы показываются сразу, а устаревший кэш обновляется в фоне.
-- Умный офлайн-режим с возрастом кэша и предупреждениями об устаревших данных.
-- Локальная история последних 30 конвертаций.
-- Русский, английский, немецкий и упрощённый китайский интерфейсы.
-- Поиск по коду, названию и альтернативным именам валюты.
-- Избранные валюты закрепляются сверху.
-- Целевая валюта выбирается отдельно, а кнопка обмена меняет местами текущую пару с сохранением эквивалентной суммы.
-- Обновление чисел без пересоздания всего списка при каждом вводе.
-- Код разделён на локальные ES-модули.
-- Версионирование и миграция настроек, истории и кэша.
-- Проверка типа, размера, даты и числовых значений каждого ответа API.
+## Main features
 
-## Приватность и безопасность
+- More than 100 fiat currencies, cryptocurrencies, and tokens.
+- One rate table relative to USD: changing the base currency or amount does not create additional network requests.
+- Stale-while-revalidate: saved rates are shown immediately and stale cache updates in the background.
+- Smart offline mode with cache age and stale-data warnings.
+- Local history of the last 30 conversions.
+- Russian, English, German, and Simplified Chinese interface languages.
+- Search by currency code, name, and alternative names.
+- Favorite currencies are pinned at the top.
+- The target currency is selected separately; the swap button exchanges the current pair while preserving the equivalent amount.
+- Numbers update without recreating the entire list on every keystroke.
+- Code is split into local ES modules.
+- Settings, history, and cache include versioning and automatic migrations.
+- Every API response is validated for type, size, date, and numeric values.
 
-Расширение не собирает аналитику, историю браузера, введённые суммы, поисковые запросы, выражения калькулятора и настройки. История конвертаций, настройки и кэш хранятся только локально через `browser.storage.local`.
+## Privacy and security
 
-Для получения курсов выполняются только фиксированные HTTPS-запросы к четырём разрешённым адресам:
+The extension does not collect analytics, browsing history, entered amounts, search queries, calculator expressions, or settings. Conversion history, settings, and cache are stored only locally through `browser.storage.local`.
+
+To retrieve rates, the extension makes only fixed HTTPS requests to four allowed hosts:
 
 - `api.coinbase.com`;
-- `api.coingecko.com` — только USD-котировки криптовалют для независимой сверки;
+- `api.coingecko.com` — USD crypto quotes only, for independent validation;
 - `cdn.jsdelivr.net`;
 - `latest.currency-api.pages.dev`.
 
-В URL не передаются введённая сумма, выбранная валюта, поисковая строка, история или другие пользовательские данные. API-ключи отсутствуют. Удалённых скриптов, `eval`, `new Function`, `innerHTML` с сетевыми данными и загружаемого исполняемого кода нет.
+URLs never include the entered amount, selected currency, search text, history, or other user data. There are no API keys, remote scripts, `eval`, `new Function`, `innerHTML` with network data, or remotely loaded executable code.
 
-## Установка для проверки
+## Installation for testing
 
-1. Откройте `about:debugging#/runtime/this-firefox`.
-2. Нажмите «Загрузить временное дополнение».
-3. Выберите `manifest.json` из распакованной папки либо готовый `.xpi`.
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click **Load Temporary Add-on**.
+3. Choose `manifest.json` from the unpacked folder or a built `.xpi` file.
 
-Минимальная версия Firefox — 140, так как используется встроенная декларация отсутствия сбора данных.
+The minimum Firefox version is 140 because the extension declares that it does not collect data.
 
-## Проверка перед выпуском
+## Pre-release verification
 
-Требуется Node.js 20+ и PowerShell. Выполните `npm run verify`: команда проверит синтаксис, запустит тесты, соберёт XPI в `dist/` и сверит каждый файл архива с разрешённым исходным набором. В пакет не включаются тесты, скрипты, `package.json` и другие инструменты разработки.
+Node.js 20+ and PowerShell are required. Run `npm run verify` to check syntax, run tests, build the XPI in `dist/`, and compare every archive file against the approved source set. Tests, scripts, `package.json`, and other development tools are excluded from the package.
