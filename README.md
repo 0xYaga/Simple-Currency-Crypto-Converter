@@ -20,12 +20,6 @@ If the extension is useful to you, you can support its continued development:
   <img src="assets/screenshots/3.png" alt="Screenshot 3" width="31%">
 </p>
 
-## Screenshots
-
-![Screenshot 3](assets/screenshots/3.png)
-![Screenshot 2](assets/screenshots/2.png)
-![Screenshot 1](assets/screenshots/1.png)
-
 ## What is included in 1.0.0
 
 - The current pair and converted total have a dedicated result area above the rate list. Click the result code to choose the target currency.
