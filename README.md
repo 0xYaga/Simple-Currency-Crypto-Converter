@@ -5,6 +5,12 @@
 A minimalist currency and cryptocurrency converter with a standard calculator for Firefox and compatible browsers.
 
 Detailed technical documentation: [DOCUMENTATION.md](DOCUMENTATION.md).
+## Support the project
+
+If the extension is useful to you, you can support its continued development:
+
+[☕ Support on DonationAlerts](https://www.donationalerts.com/r/0xyaga)
+
 
 ## Screenshots
 
